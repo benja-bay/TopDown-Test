@@ -27,6 +27,7 @@ public class PlayerMovment : MonoBehaviour
         playerAnimator.SetFloat("Horizontal", moveX);
         playerAnimator.SetFloat("Vertical", moveY);
         playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+        // Pasamos el valor tanto de moveX y de moveY a las variables del animator "Horizontal" y "Vertical"
     }
 
     private void FixedUpdate()
