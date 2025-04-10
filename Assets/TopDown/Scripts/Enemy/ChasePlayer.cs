@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class ChasePlayer : MonoBehaviour
 {
     public float moveSpeed = 2f;
     Rigidbody2D rb2d;
@@ -14,29 +14,15 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        
-    }
-
-    void Start()
-    {
         target = GameObject.Find("Player").transform;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (target)
-        {
-            Vector3 direction = (target.position - transform.position).normalized;
-            moveDirection = direction;
-        }
-    }
-
     private void FixedUpdate()
     {
         if (target)
         {
-            rb2d.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            EnemyAIUtility.ChaseTarget(rb2d, transform, target, moveSpeed);
+            //transform es el transform del objeto que persigue
+            //target es el transform del objeto al que persigue
         }
     }
 }
